@@ -5,7 +5,7 @@ void main() {
   // Nao deletar
   final line = stdin.readLineSync() ?? '';
   if (line.isEmpty) exit(0);
-  final inputs = line.split(' ');
+  final inputs = line.split('');
 
   // Variaveis iniciais
   final velocidade = int.parse(inputs[0]);
@@ -14,4 +14,6 @@ void main() {
   // Escreva seu programa a partir daqui
   final distancia = -(pow(velocidade, 2)) / (2 * aceleracao);
   print(distancia);
+
+  
 }
