@@ -1,25 +1,11 @@
+class Calculator {
+  final num1;
+  final num2;
 
+  Calculator(this.num1, this.num2);
 
-abstract class Calculator {
-  final int num1;
-  final int num2;
-  final String operator;
-  
-
-   Calculator(this.num1, this.num2, this.operator) {
-    switch (operator) {
-      case 'subtração':
-       num1 - num2;
-        break;
-      case 'divisão':
-       num1 / num2;
-        break;
-      case 'multiplicação':
-        num1 * num2;
-        break;
-      default:
-        num1 + num2;
-        break;
-    }
-  }
+  int soma() => num1 + num2;
+  int sub() => num1 - num2;
+  int mult() => num1 * num2;
+  int div() => num1 / num2;
 }

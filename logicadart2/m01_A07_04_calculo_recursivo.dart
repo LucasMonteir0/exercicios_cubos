@@ -1,11 +1,12 @@
+
 void main() {
-  final num = 23;
-  List<int> number = [];
+  print(recursivo(23));
+}
 
-  for (int i = 0; i <= num; i++) {
-    number.add(i);
+ int recursivo(int n) {
+  if (n <= 1) {
+    return 1;
+    
   }
-
-  final result = number.reduce((v, e) => v + e);
-  print('Todos os valores somados de 0 até $num: $result');
+   return n += recursivo(n - 1);
 }
