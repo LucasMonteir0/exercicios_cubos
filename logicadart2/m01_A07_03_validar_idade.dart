@@ -1,18 +1,34 @@
 void main() {
-  final name = 'Cristiano';
-  int day = 2;
-  int mounth = 10;
-  int year = 1998;
+  final name = 'Miguel';
+  final age = calcAge(year: 2003, month: 2, day: 1);
 
-  myFunction(day, mounth, year);
+  if (age >= 18) {
+    print('Nome: $name');
+    print('Idade: $age');
+    print('Pode dirigir!');
+  } else {
+    print('Nome: $name');
+    print('Idade: $age');
+    print('Não pode dirigir!');
+  }
 }
 
-myFunction(int day, int mounth, int year) {
-  if (year + 18 < 2022) {
-    if (mounth <= 9) {
-      if (day <= 28) {
-        print('ok');
+int calcAge({required int year, required int month, required int day}) {
+  var dateNow = DateTime.now();
+
+  if (dateNow.year > year) {
+    if (dateNow.month > month) {
+      return dateNow.year - year;
+    } else if (dateNow.month < month) {
+      return dateNow.year - 1 - year;
+    } else {
+      if (dateNow.day > day) {
+        return dateNow.year - year;
+      } else {
+        return dateNow.year - 1 - year;
       }
     }
+  } else {
+    return 0;
   }
 }
