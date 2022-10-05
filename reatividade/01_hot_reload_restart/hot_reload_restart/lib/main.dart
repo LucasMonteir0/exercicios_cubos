@@ -21,16 +21,16 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       home: Card(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [Colors.blueAccent, Colors.purpleAccent],
             ),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
-              'Flutter',
+              'Flutter Gradient',
               style: TextStyle(
                 fontSize: 32.0,
                 color: Colors.white,
