@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
           ),
           child: const Center(
             child: Text(
-              'Flutter Gradient',
+              'Flutter Gradient!',
               style: TextStyle(
                 fontSize: 32.0,
                 color: Colors.white,
