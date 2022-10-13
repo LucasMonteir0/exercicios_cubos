@@ -7,7 +7,7 @@ class StoneFragments {
   int pieces = 0;
   int stones = 0;
   int cliques = 0;
-  dynamic stoneImage = Image.asset('assets/fragment.png');
+  String asset = 'assets/fragment.png';
 
   void incrementStones() {
     cliques++;
@@ -15,19 +15,12 @@ class StoneFragments {
     if (fragments > 9) {
       pieces++;
       fragments = 0;
+      asset = 'assets/piece.png';
     }
     if (pieces > 9) {
       stones++;
       pieces = 0;
-    }
-  }
-
-  void changeImage() {
-    if (fragments > 9) {
-      stoneImage = Image.asset('assets/piece.png');
-    }
-    if (pieces > 9) {
-      stoneImage = Image.asset('assets/stone.png');
+      asset = 'assets/stone.png';
     }
   }
 }
@@ -49,12 +42,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void updateImage() {
-    setState(() {
-      stoneFragments.changeImage();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     texts = [
@@ -68,41 +55,46 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Cliques: ${stoneFragments.cliques}'),
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                'assets/background_stones.jpeg',
+        body: GestureDetector(
+          onTap: updateClicks,
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/background_stones.jpeg',
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: updateClicks,
-                  child: Image.asset('assets/fragment.png'),
-                ),
-                const Text(
-                  'Clique na pedra',
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                ),
-                Column(
-                    children: texts
-                        .map(
-                          (e) => Text(
-                            '${e["title"]} : ${e["value"]}',
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    stoneFragments.asset,
+                  ),
+                  const Text(
+                    'Touch on screen',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Column(
+                      children: texts
+                          .map(
+                            (e) => Text(
+                              '${e["title"]} : ${e["value"]}',
+                              style: const TextStyle(
+                                fontSize: 32,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )
-                        .toList())
-              ],
+                          )
+                          .toList())
+                ],
+              ),
             ),
           ),
         ),
