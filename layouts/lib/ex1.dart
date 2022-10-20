@@ -36,10 +36,10 @@ class MyAppBar extends StatelessWidget {
           ),
         ),
         backgroundColor: theme.colorScheme.primary,
-        leading: IconButton(
-          onPressed: (() {}),
-          icon: const Icon(Icons.coffee),
+        leading: const Icon(
+          Icons.coffee,
           color: Colors.brown,
+          size: 35,
         ),
       ),
     );

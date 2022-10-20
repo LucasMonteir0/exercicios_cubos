@@ -27,37 +27,29 @@ class MyDrawerApp extends StatelessWidget {
           style: TextStyle(color: Colors.pink.shade100),
         ),
         backgroundColor: Colors.pink.shade700,
+        // actions: [Drawer()],
       ),
       drawer: Drawer(
         backgroundColor: const Color.fromARGB(255, 251, 225, 234),
         child: ListView(
           children: const [
             ListTile(
-              leading: Icon(
-                Icons.flash_on, // arrow ou chevron
-                size: 45,
-                color: Colors.blue,
-              ),
+              leading: Icon(Icons.flash_on, size: 45, color: Colors.blue),
               title: Text('Flutter'),
               subtitle: Text('All is widgets!'),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
             ),
             ListTile(
-              leading: Icon(
-                Icons.tag_faces, // arrow ou chevron
-                size: 45,
-                color: Colors.pink,
-              ),
+              leading: Icon(Icons.tag_faces, size: 45, color: Colors.pink),
               title: Text('Dart'),
               subtitle: Text('Is so strong!'),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
             ),
             ListTile(
-              leading: Icon(
-                Icons.coffee, // arrow ou chevron
-                size: 45,
-                color: Colors.brown,
-              ),
+              leading: Icon(Icons.coffee, size: 45, color: Colors.brown),
               title: Text('Cafessíneo'),
               subtitle: Text('Quero caféééé!'),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
             ),
           ],
         ),
