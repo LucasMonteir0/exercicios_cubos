@@ -68,8 +68,8 @@ class CardNFT extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ClipRRect(
-              child: Image.asset('assets/nftimage.png'),
               borderRadius: const BorderRadius.all(Radius.circular(10)),
+              child: Image.asset('assets/nftimage.png'),
             ),
           ),
           Padding(
@@ -105,7 +105,7 @@ class CardNFT extends StatelessWidget {
                     Row(
                       children: const [
                         Icon(
-                          Icons.timer,
+                          Icons.access_time_filled,
                           color: cor3,
                         ),
                         SizedBox(
