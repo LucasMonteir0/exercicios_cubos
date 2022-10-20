@@ -8,6 +8,7 @@ class StoneFragments {
   int stones = 0;
   int cliques = 0;
   String asset = 'assets/fragment.png';
+  dynamic appBarColor = Colors.blue;
 
   void incrementStones() {
     cliques++;
@@ -16,11 +17,13 @@ class StoneFragments {
       pieces++;
       fragments = 0;
       asset = 'assets/piece.png';
+      appBarColor = Colors.lightBlueAccent;
     }
     if (pieces > 9) {
       stones++;
       pieces = 0;
       asset = 'assets/stone.png';
+      appBarColor = const Color.fromARGB(255, 188, 222, 242);
     }
   }
 }
@@ -53,7 +56,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Cliques: ${stoneFragments.cliques}'),
+          backgroundColor: stoneFragments.appBarColor,
+          title: Text(
+            'Cliques: ${stoneFragments.cliques}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: GestureDetector(
           onTap: updateClicks,
