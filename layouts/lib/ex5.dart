@@ -7,7 +7,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: MyAppBar());
+    return const MaterialApp(
+      home: MyAppBar(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
@@ -19,11 +22,19 @@ class MyAppBar extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 46, 45, 95),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.local_grocery_store,
+              size: 30,
+            ),
+          ),
+        ],
         title: const Text('OpenSea Market'),
         backgroundColor: const Color.fromARGB(255, 57, 75, 121),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey.shade300,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -134,24 +145,24 @@ class CardNFT extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 13.0),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(100)),
-                          child: Image.network(
-                              'https://avatars.githubusercontent.com/u/113645063?s=400&u=901acc2c507c17f8bba725bb6231216362d7a9ec&v=4'),
-                        ),
+                  
+                      const CircleAvatar( 
+                        backgroundImage: NetworkImage(
+                            'https://avatars.githubusercontent.com/u/113645063?s=400&u=901acc2c507c17f8bba725bb6231216362d7a9ec&v=4')
                       ),
-                      const Text(
-                        '   Criado por ',
-                        style: TextStyle(color: cor3),
-                      ),
-                      const Text(
-                        'Lucas Monteiro',
-                        style: TextStyle(
-                          color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: RichText(
+                          text: const TextSpan(
+                            text: 'Criado por ',
+                            style: TextStyle(color: cor3),
+                            children: [
+                              TextSpan(
+                                text: 'Lucas Monteiro',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],

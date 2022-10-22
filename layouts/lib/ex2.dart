@@ -28,8 +28,18 @@ class MyDrawerApp extends StatelessWidget {
         ),
         backgroundColor: Colors.pink.shade700,
         // actions: [Drawer()],
+        actions: [
+          Builder(builder: (context) {
+            return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+              icon: const Icon(Icons.person),
+            );
+          }),
+        ],
       ),
-      drawer: Drawer(
+      endDrawer: Drawer(
         backgroundColor: const Color.fromARGB(255, 251, 225, 234),
         child: ListView(
           children: const [
