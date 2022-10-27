@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Images {
   static const dachshund =
       'https://cdn.britannica.com/81/12481-050-6FF2A457/dachshund-coat-hair.jpg';
@@ -21,4 +19,8 @@ class Images {
       'https://static1.patasdacasa.com.br/articles/6/39/46/@/patas-opengraph_1200-1.jpg';
   static const dalmata =
       'https://i0.wp.com/www.portaldodog.com.br/cachorros/wp-content/uploads/2022/08/cachorro-da-raca-dalmata.jpg?resize=798%2C484&ssl=1';
+  static const mapa = 'https://i.imgur.com/qVbQ7ho.png';
+  static const ponteLuis = 'https://i.imgur.com/JCelTKF.jpeg';
+  static const torreClreigo = 'https://i.imgur.com/MGuco6w.jpeg';
+  static const livrariaLello = 'https://i.imgur.com/4iml7h5.jpeg';
 }

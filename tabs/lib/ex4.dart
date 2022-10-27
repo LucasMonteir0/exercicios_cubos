@@ -30,6 +30,10 @@ class MyApp extends StatelessWidget {
             ),
             backgroundColor: Colors.yellow.shade700,
             bottom: TabBar(
+              labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.blue.shade700,
+              // indicatorColor: Colors.white,
               tabs: trips
                   .map((trip) => Tab(
                         text: trip.name,
@@ -39,7 +43,6 @@ class MyApp extends StatelessWidget {
                         ),
                       ))
                   .toList(),
-              isScrollable: false,
             ),
           ),
           body: const TabBarView(children: [
@@ -62,6 +65,3 @@ class Trip {
   final String name;
   final IconData icon;
 }
-
-
-
