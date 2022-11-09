@@ -111,6 +111,9 @@ class MyLogoBar extends StatelessWidget {
                   fontSize: 30,
                 ),
               ),
+              SizedBox(
+                height: 1,
+              ),
               Text(
                 'What would you like to monitor? ',
                 style: TextStyle(
@@ -230,7 +233,7 @@ class MyTheme {
       textTheme: const TextTheme(
         bodyText1: TextStyle(fontSize: 30),
         bodyText2: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             color: Color(0xFF124165),
             fontWeight: FontWeight.bold),
         // button: TextStyle(fontSize: 30),
@@ -247,7 +250,7 @@ class MyTheme {
       textTheme: const TextTheme(
         bodyText1: TextStyle(fontSize: 30),
         bodyText2: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             color: Color(0xFFA0AEB7),
             fontWeight: FontWeight.bold),
       ),
