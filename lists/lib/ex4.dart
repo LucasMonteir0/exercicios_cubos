@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -25,9 +23,6 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {});
   }
-
-  SliverGridDelegateWithFixedCrossAxisCount gridDelegate =
-      const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                   child: MyLogoBar(),
                 ),
                 SizedBox(
-                    height: 520,
+                    height: 460,
                     child: MyGridVew(
                       onPressedCard: () {
                         setState(() {});
@@ -65,7 +60,7 @@ class _MyAppState extends State<MyApp> {
                     )),
                 SizedBox(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                    padding: const EdgeInsets.only(top: 8.0, right: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -98,7 +93,7 @@ class MyLogoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 25.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 25.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -132,14 +127,16 @@ class MyLogoBar extends StatelessWidget {
 
 class MyGridVew extends StatelessWidget {
   const MyGridVew({super.key, required this.onPressedCard});
-
   final VoidCallback onPressedCard;
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 5.0),
-      crossAxisSpacing: 1.0,
-      mainAxisSpacing: 1.0,
+      childAspectRatio: 1.3,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 5.0),
+      crossAxisSpacing: 2.0,
+      mainAxisSpacing: 2.0,
       crossAxisCount: 2,
       children: [
         MyGridTile(
@@ -197,6 +194,7 @@ class _MyGridTileState extends State<MyGridTile> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
         widget.onPressedCard();
@@ -206,7 +204,7 @@ class _MyGridTileState extends State<MyGridTile> {
           elevation: 3,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          // color: isSelected ? Colors.black38 : Colors.amber.shade200,
+          color: isSelected ? theme.primaryColor : theme.cardColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -214,7 +212,7 @@ class _MyGridTileState extends State<MyGridTile> {
                 padding: const EdgeInsets.all(17.0),
                 child: Icon(
                   widget.icon,
-                  size: 50,
+                  size: 40,
                 ),
               ),
               Text(widget.text)
@@ -238,14 +236,14 @@ class MyTheme {
         // button: TextStyle(fontSize: 30),
       ),
       iconTheme: const IconThemeData(color: Color(0xFF124165)),
-      cardTheme: const CardTheme(color: Color(0xFF7E97A7)),
+      cardColor: const Color(0xFF7E97A7),
+      primaryColor: const Color(0xFFC0CED2),
     );
   }
 
   static ThemeData dark() {
     return ThemeData(
       brightness: Brightness.dark,
-      appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
       textTheme: const TextTheme(
         bodyText1: TextStyle(fontSize: 30),
         bodyText2: TextStyle(
@@ -254,7 +252,8 @@ class MyTheme {
             fontWeight: FontWeight.bold),
       ),
       iconTheme: const IconThemeData(color: Color(0xFFA0AEB7)),
-      cardTheme: const CardTheme(color: Color(0xFF1D415B)),
+      cardColor: const Color(0xFF1D415B),
+      primaryColor: const Color(0xFF2A5070),
     );
   }
 }
