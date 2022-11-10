@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             controller: textFieldController,
             autofocus: true,
             inputFormatters: [
-              FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
+              FilteringTextInputFormatter(RegExp(r"[0-9]"), allow: true)
             ],
             decoration: const InputDecoration(labelText: 'Informe sua idade'),
           ),
