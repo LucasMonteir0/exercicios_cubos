@@ -10,12 +10,11 @@ class MyApp extends StatelessWidget {
 
   // COMO FAZER PARA VALIDAR OS INPUTS E MOSTRAR A RESPOSTA?
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: const MyHomePage(),
     );
@@ -32,28 +31,79 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  //REALMENTE PRECISA CRIAR 2 CONTROLLERS?
+
+  final textFieldController1 = TextEditingController();
+  final textFieldController2 = TextEditingController();
+  int result = 0;
+
+  void clearText() {
+
+    textFieldController1.clear();
+    textFieldController2.clear();
+
+    setState(() {
+      result = 0;
+    });
+  }
+// debugPrint(textFieldController1.text.toString());
+  // debugPrint(textFieldController2.text.toString());
+
+  void calculator() {
+    if (result == 0) {
+      result = int.parse(textFieldController1.text) +
+          int.parse(textFieldController2.text);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Calculadora Simples'),
+      ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const Text('Resposta: 0',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+        Text('Resposta: $result',
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         const SizedBox(height: 80),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: const [
-          MyTextField(),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          SizedBox(
+              width: 136,
+              child: TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
+                ],
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                decoration: textFieldDecoration('Primeiro Número'),
+                controller: textFieldController1,
+                autofocus: true,
+              )),
           // SizedBox(width: 50),
-          MyTextField(),
+          SizedBox(
+              width: 136,
+              child: TextFormField(
+                inputFormatters: [
+                  FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
+                ],
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                decoration: textFieldDecoration('Segundo Número'),
+                controller: textFieldController2,
+              )),
         ]),
         const SizedBox(height: 50),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => calculator(),
               child: const Text('SOMAR'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: clearText,
               child: const Text('LIMPAR'),
             ),
           ],
@@ -61,32 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ]),
     );
   }
-}
 
-class MyTextField extends StatelessWidget {
-  const MyTextField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        width: 136,
-        child: TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
-          ],
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.number,
-          decoration: textFieldDecoration(),
-        ));
+  InputDecoration textFieldDecoration(String helperText) {
+    return InputDecoration(
+      filled: true,
+      border: const OutlineInputBorder(),
+      labelText: 'Inserir Número',
+      helperText: helperText,
+    );
   }
-}
-
-InputDecoration textFieldDecoration() {
-  return const InputDecoration(
-    filled: true,
-    border: OutlineInputBorder(),
-    labelText: 'Inserir Número',
-  );
 }
