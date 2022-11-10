@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: ((context) {
           return AlertDialog(
-            title: dialogMessage() ?? const Text('Insira sua idade'),
+            title: dialogMessage(), //?? const Text('Insira sua idade'),
             actions: [
               TextButton(
                   onPressed: Navigator.of(context).pop, child: const Text('OK'))
@@ -39,19 +39,19 @@ class _MyHomePageState extends State<MyHomePage> {
   final textFieldController = TextEditingController();
 
   dynamic dialogMessage() {
-    int textInput = int.parse(textFieldController.text);
+    if (textFieldController.text.isNotEmpty) {
+      int textInput = int.parse(textFieldController.text);
       if (textInput < 16) {
         return const Text('Não pode votar');
       } else if (textInput == 16 || textInput == 17 || textInput > 65) {
         return const Text('Voto Facultativo');
       } else if (textInput >= 18 && textInput <= 65) {
         return const Text('Voto Obrigatório');
-      } else { 
-        return const Text('Insira a idade');
-     
+      }
+    } else {
+      return const Text('Insira a sua idade');
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 20.0),
           child: TextFormField(
+            // onChanged: (value) {
+            //   setState(() {});
+            // },
             controller: textFieldController,
             autofocus: true,
             inputFormatters: [
@@ -72,10 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         ElevatedButton(
-            onPressed: showAgeDialog, child: const Text('Verificar Idade'))
+            onPressed: showAgeDialog,
+            child: const Text('Verificar Idade'))
       ]),
     );
   }
+
   @override
   void dispose() {
     textFieldController.dispose();

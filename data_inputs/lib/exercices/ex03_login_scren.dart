@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,22 +35,34 @@ class MyLoginScreen extends StatefulWidget {
 class _MyLoginScreenState extends State<MyLoginScreen> {
   bool obscuredText = true;
 
-  final loginTextFieldController = TextEditingController();
+  final userTextFieldController = TextEditingController();
   final passwordTextFieldController = TextEditingController();
 
   void showLoginDialog() {
     showDialog(
         context: context,
         builder: (context) {
-          return const AlertDialog(
-            title: Text('Teste'),
+          return AlertDialog(
+            title: Text(loginDialogMessage()),
           );
         });
   }
 
-  void loginDialogMessage(selectedField) {
-    if (selectedField != null) {
-      loginTextFieldController.text;
+  loginDialogMessage() {
+    final userText = userTextFieldController.text;
+    final passwordText = passwordTextFieldController.text;
+    if (passwordText.isNotEmpty && userText.isEmpty) {
+      return 'Inserir o usuário';
+    } else if (userText.isNotEmpty && passwordText.isEmpty) {
+      return 'Inserir a senha';
+    } else if (userText.isEmpty && passwordText.isEmpty) {
+      return 'Inserir usuário e senha';
+    } else if (userText == User.loginUser &&
+        passwordText == User.loginPassword) {
+      return '${User.loginUser} logado(a) no sistema!';
+    } else if (userText != User.loginUser ||
+        passwordText != User.loginPassword) {
+      return 'Usuário ou senha incorretos';
     }
   }
 
@@ -65,11 +78,15 @@ class _MyLoginScreenState extends State<MyLoginScreen> {
               child: Text('Login'),
             ),
             TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z]"))],
+              textCapitalization: TextCapitalization.words,
+              controller: userTextFieldController,
               autofocus: true,
               decoration: textFieldDecoration(labelText: 'Usuário'),
             ),
             const SizedBox(height: 5),
             TextFormField(
+              controller: passwordTextFieldController,
               obscureText: obscuredText,
               maxLength: 8,
               decoration: textFieldDecoration(
@@ -114,7 +131,7 @@ class _MyLoginScreenState extends State<MyLoginScreen> {
 
   @override
   void dispose() {
-    loginTextFieldController.dispose();
+    userTextFieldController.dispose();
     passwordTextFieldController.dispose();
     super.dispose();
   }

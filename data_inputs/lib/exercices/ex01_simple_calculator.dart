@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       result = 0;
     });
   }
-// debugPrint(textFieldController1.text.toString());
+  // debugPrint(textFieldController1.text.toString());
   // debugPrint(textFieldController2.text.toString());
 
   void calculator() {
