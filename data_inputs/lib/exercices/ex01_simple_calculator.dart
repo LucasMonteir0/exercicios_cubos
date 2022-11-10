@@ -14,8 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
+          primarySwatch: Colors.grey,
+          textTheme: TextTheme(
+              bodyText1: TextStyle(color: Colors.white, fontSize: 20),
+              bodyText2: TextStyle(color: Colors.grey.shade600))),
       home: const MyHomePage(),
     );
   }
@@ -31,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   //REALMENTE PRECISA CRIAR 2 CONTROLLERS?
 
   final textFieldController1 = TextEditingController();
@@ -39,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int result = 0;
 
   void clearText() {
-
     textFieldController1.clear();
     textFieldController2.clear();
 
@@ -60,9 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculadora Simples'),
+        title: Text(
+          'Calculadora Simples',
+          style: theme.textTheme.bodyText1,
+        ),
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text('Resposta: $result',
@@ -100,11 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             ElevatedButton(
               onPressed: () => calculator(),
-              child: const Text('SOMAR'),
+              child: Text('SOMAR', style: theme.textTheme.bodyText1),
             ),
             ElevatedButton(
               onPressed: clearText,
-              child: const Text('LIMPAR'),
+              child: Text('LIMPAR', style: theme.textTheme.bodyText1),
             ),
           ],
         )
