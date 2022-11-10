@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: ((context) {
           return AlertDialog(
-            title: dialogMessage(0),
+            title: dialogMessage() ?? const Text('Insira sua idade'),
             actions: [
               TextButton(
                   onPressed: Navigator.of(context).pop, child: const Text('OK'))
@@ -38,20 +38,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final textFieldController = TextEditingController();
 
-  dynamic dialogMessage(int textInput) {
-    if (textInput == 0) {
-      return const Text('Insira a idade');
-    } else {
-      int textInput = int.parse(textFieldController.text);
+  dynamic dialogMessage() {
+    int textInput = int.parse(textFieldController.text);
       if (textInput < 16) {
         return const Text('Não pode votar');
       } else if (textInput == 16 || textInput == 17 || textInput > 65) {
         return const Text('Voto Facultativo');
-      } else {
+      } else if (textInput >= 18 && textInput <= 65) {
         return const Text('Voto Obrigatório');
-      }
+      } else { 
+        return const Text('Insira a idade');
+     
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -75,5 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: showAgeDialog, child: const Text('Verificar Idade'))
       ]),
     );
+  }
+  @override
+  void dispose() {
+    textFieldController.dispose();
+    super.dispose();
   }
 }

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.grey,
           textTheme: TextTheme(
-              bodyText1: TextStyle(color: Colors.white, fontSize: 20),
+              bodyText1: const TextStyle(color: Colors.white, fontSize: 20),
               bodyText2: TextStyle(color: Colors.grey.shade600))),
       home: const MyHomePage(),
     );
@@ -123,5 +123,12 @@ class _MyHomePageState extends State<MyHomePage> {
       labelText: 'Inserir Número',
       helperText: helperText,
     );
+  }
+
+  @override
+  void dispose() {
+    textFieldController1.dispose();
+    textFieldController2.dispose();
+    super.dispose();
   }
 }
