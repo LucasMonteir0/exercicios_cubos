@@ -43,7 +43,6 @@ class _BombPageState extends State<BombPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Center(
         child: (_timer?.isActive ?? false)
             ? const BombScreen()
