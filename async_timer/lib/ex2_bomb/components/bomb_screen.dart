@@ -9,23 +9,26 @@ class BombScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          children: [
-            const SizedBox(
-              width: 36.0,
-            ),
-            Image.network(
-              'https://i.pinimg.com/originals/97/00/ff/9700ff5255003108cbb1c7b49e666637.gif',
-              height: 350,
-              fit: BoxFit.contain,
-            ),
-          ],
+        Container(
+          padding: const EdgeInsets.only(left: 50.0),
+          height: 500,
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            children: [
+              Image.network(
+                'https://i.pinimg.com/originals/97/00/ff/9700ff5255003108cbb1c7b49e666637.gif',
+                fit: BoxFit.contain,
+              ),
+            ],
+          ),
         ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        const Text('Passe a bomba')
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 20.0),
+          child: Text('Passe a bomba'),
+        )
       ],
     );
   }

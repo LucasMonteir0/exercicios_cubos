@@ -17,6 +17,7 @@ class BombApp extends StatelessWidget {
       //       ),
 
       // },
+      debugShowCheckedModeBanner: false,
       theme: BoomTheme.theme(),
       home: const HomePage(),
     );
