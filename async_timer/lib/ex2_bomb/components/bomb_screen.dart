@@ -13,7 +13,7 @@ class BombScreen extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.only(left: 50.0),
-          height: 500,
+          height: 700,
           child: ListView(
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
