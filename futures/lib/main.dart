@@ -18,19 +18,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int? random;
-  bool isSelected = false;
+  bool isUserSelected = false;
 
-  Future<Widget> _getFolder() async {
-    return await Future.delayed(
-        const Duration(seconds: 1),
+  Future<Widget> _getUser() {
+    return Future.delayed(
+        const Duration(seconds: 5),
         () async => Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(await selectedFolder()),
+                Text(await _selectedUser()),
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      isSelected = false;
+                      isUserSelected = false;
                     });
                   },
                   child: const Text('Back'),
@@ -39,10 +39,11 @@ class _MyAppState extends State<MyApp> {
             ));
   }
 
-  Future<String> selectedFolder() async {
-    final folder = await rootBundle.loadString('assets/user$random.json');
-    final stringFolder = folder.toString();
-    final mapFolder = jsonDecode(stringFolder);
+  Future<String> _selectedUser() async {
+    final folder = await rootBundle
+        .loadString('assets/user$random.json'); // RETORNA STRING
+    // final stringFolder = folder.toString();
+    final mapFolder = jsonDecode(folder);
     return UserModel(mapFolder["nome"], mapFolder["nascimento"]).toString();
   }
 
@@ -51,14 +52,14 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: isSelected
+          child: isUserSelected
               ? FutureBuilder(
-                  future: _getFolder(),
+                  future: _getUser(),
                   builder: ((context, snapshot) {
                     if (snapshot.hasData) {
                       return Center(child: snapshot.data);
                     } else if (snapshot.hasError) {
-                      return Text('erro');
+                      return const Text('erro');
                     }
 
                     return const CircularProgressIndicator();
@@ -67,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () {
                     setState(() {
                       random = Random().nextInt(6) + 1;
-                      isSelected = true;
+                      isUserSelected = true;
                     });
                   },
                   child: const Text('Click Here'),
