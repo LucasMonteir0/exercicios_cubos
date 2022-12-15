@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'cineflix_app.dart';
+import 'megacine_app.dart';
 
 void main() {
-  runApp(const CineflixApp());
+  runApp(const MegaCineApp());
 }
-

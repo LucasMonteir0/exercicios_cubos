@@ -3,22 +3,30 @@ import '../../config/urls.dart';
 class CatalogModel {
   CatalogModel(
       {required this.id,
-      required this.image,
+      required this.posterImage,
+      required this.backdropImage,
       required this.description,
       required this.title});
 
   final int id;
-  final String image;
+  final String posterImage;
+  final String backdropImage;
   final String description;
   final String title;
 
   factory CatalogModel.fromMap(Map<String, dynamic> map) => CatalogModel(
         id: map['id'],
-        image: "${Urls.baseImageUrl}${map['poster_path']}",
+        posterImage: "${Urls.baseImageUrl}${map['poster_path']}",
+        backdropImage: "${Urls.baseImageUrl}${map['backdrop_path']}",
         description: map['overview'],
         title: map['title'],
       );
 
-  Map<String, dynamic> toMap() =>
-      {'id': id, 'poster_path': image, 'overview': description, 'title': title};
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'poster_path': posterImage,
+        'backdrop_path': backdropImage,
+        'overview': description,
+        'title': title
+      };
 }
