@@ -49,5 +49,25 @@ class CatalogRepository {
     }
   }
 
+ Future<List<CatalogModel>> getDetails(int id) async {
+    try {
+      final response = await _dio.get(
+          '${Urls.baseUrl}/$id?api_key=$apiKey&language=pt-BR');
+
+      final List<CatalogModel> catalogs = response.data['results']
+          .map<CatalogModel>((map) => CatalogModel.fromMap(map))
+          .toList();
+      return catalogs;
+    } on DioError catch (e) {
+      if (e.response!.statusCode == 401) {
+        throw Exception('Erro 401 - Api Key Inválida');
+      } else if (e.response!.statusCode == 404) {
+        throw Exception('Erro 404 - Arquivo não encontrado');
+      }
+      throw e.error;
+    } catch (e) {
+      throw Exception();
+    }
+  }
  
 }

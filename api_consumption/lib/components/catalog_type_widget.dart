@@ -1,4 +1,5 @@
 import 'package:api_consumption/data/repository/catalog_repository.dart';
+import 'package:api_consumption/view/details_page.dart';
 import 'package:flutter/material.dart';
 
 import 'film_card_widget.dart';
@@ -7,12 +8,11 @@ import '../data/model/catalog_model.dart';
 class CatalogType extends StatelessWidget {
   const CatalogType({
     Key? key,
-    required this.onFilmTap,
     required this.future,
   }) : super(key: key);
 
   final Future<List<CatalogModel>> future;
-  final VoidCallback onFilmTap;
+  // final VoidCallback onFilmTap;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,14 @@ class CatalogType extends StatelessWidget {
                 .map<Widget>((movies) => FilmCard(
                       filmImage: movies.posterImage,
                       filmName: movies.title,
-                      onFilmTap: onFilmTap,
+                      onFilmTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailsPage(movieId: movies.id)),
+                        );
+                      },
                     ))
                 .toList(),
           );

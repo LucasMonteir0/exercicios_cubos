@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import '../config/colors.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage(
-      {super.key,
-      required this.onChangedSwitch,
-      required this.switchValue,
-      required this.onFilmTap});
+  const HomePage({
+    super.key,
+    required this.onChangedSwitch,
+    required this.switchValue,
+  });
 
-  final VoidCallback onFilmTap;
+  // final VoidCallback onFilmTap;
   final void Function(bool value) onChangedSwitch;
   final bool switchValue;
 
@@ -62,17 +62,10 @@ class HomePage extends StatelessWidget {
           ),
           body: TabBarView(children: [
             CatalogType(
-              future: catalog.getPopular(), onFilmTap: onFilmTap, //() {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: ((context) => const DetailsPage()),
-              //     ));
-              // },
+              future: catalog.getPopular(),
             ),
             CatalogType(
               future: catalog.getTopRated(),
-              onFilmTap: () {},
             ),
           ])),
     );

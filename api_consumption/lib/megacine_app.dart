@@ -43,33 +43,16 @@ class _MegaCineAppState extends State<MegaCineApp> {
     );
   }
 
-  void onFilmTap() {
-    setState(() {
-      pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease,
-      );
-    });
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: PageView(
-        controller: pageController,
-        onPageChanged: selectedPage,
-        children: [
-          HomePage(
-            onFilmTap: onFilmTap,
-            switchValue: _isDark,
-            onChangedSwitch: switchTheme,
-          ),
-          DetailsPage(
-            onPressedArrow: backPage,
-          ),
-        ],
+      home: HomePage(
+        switchValue: _isDark,
+        onChangedSwitch: switchTheme,
       ),
     );
   }
