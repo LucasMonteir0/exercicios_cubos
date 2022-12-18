@@ -1,4 +1,3 @@
-import 'package:api_consumption/data/repository/catalog_repository.dart';
 import 'package:api_consumption/view/details_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,6 @@ class CatalogType extends StatelessWidget {
   }) : super(key: key);
 
   final Future<List<CatalogModel>> future;
-  // final VoidCallback onFilmTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class CatalogType extends StatelessWidget {
           }
           return GridView.count(
             padding: const EdgeInsets.all(16.0),
-            childAspectRatio: 0.6,
+            childAspectRatio: 0.63,
             crossAxisCount: 3,
             children: snapshot.data!
                 .map<Widget>((movies) => FilmCard(
@@ -35,9 +33,13 @@ class CatalogType extends StatelessWidget {
                       onFilmTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailsPage(movieId: movies.id)),
+                          MaterialPageRoute(builder: (context) {
+                            return DetailsPage(
+                              bannerImg: movies.backdropImage,
+                              description: movies.description,
+                              title: movies.title,
+                            );
+                          }),
                         );
                       },
                     ))

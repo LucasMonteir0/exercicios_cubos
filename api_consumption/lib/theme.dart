@@ -1,6 +1,7 @@
 import 'package:api_consumption/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   static ThemeData light() {
@@ -9,42 +10,55 @@ class MyTheme {
 
       // SCAFFOLD AND APPBAR EDITING
       scaffoldBackgroundColor: MyColors.white,
-      appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
+      appBarTheme: AppBarTheme(
+          systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: MyColors.orange,
           ),
           elevation: 0,
           backgroundColor: MyColors.white,
-          titleTextStyle: TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
             fontSize: 24.0,
             fontWeight: FontWeight.w700,
             color: MyColors.orange,
           )),
 
       // TAB BAR EDITING
-      tabBarTheme: const TabBarTheme(
-        labelPadding: EdgeInsets.symmetric(
+      tabBarTheme: TabBarTheme(
+        labelPadding: const EdgeInsets.symmetric(
           vertical: 10,
         ),
-        indicator: BoxDecoration(
+        indicator: const BoxDecoration(
           color: Colors.transparent,
         ),
         labelColor: MyColors.orange,
         unselectedLabelColor: MyColors.grey,
-        unselectedLabelStyle: TextStyle(
+        unselectedLabelStyle: GoogleFonts.poppins(
           fontSize: 18.0,
           fontWeight: FontWeight.w500,
         ),
-        labelStyle: TextStyle(
+        labelStyle: GoogleFonts.poppins(
           fontSize: 18.0,
           fontWeight: FontWeight.w500,
         ),
       ),
 
       // TEXT EDITING
-      textTheme: const TextTheme(
-        bodyText1: TextStyle(fontSize: 14.0),
-      ),
+      textTheme: TextTheme(
+          bodyText1: GoogleFonts.poppins(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w400,
+            color: MyColors.grey,
+          ),
+          bodyText2: GoogleFonts.poppins(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
+            color: MyColors.orange,
+          ),
+          headline1: GoogleFonts.poppins(
+            fontSize: 24.0,
+            fontWeight: FontWeight.w700,
+            color: MyColors.black,
+          )),
 
       // SWITCH EDITING
       switchTheme: SwitchThemeData(
@@ -56,51 +70,65 @@ class MyTheme {
 
   static ThemeData dark() {
     return ThemeData(
-        brightness: Brightness.dark,
+      brightness: Brightness.dark,
 
-        // SCAFFOLD AND APPBAR EDITING
-        scaffoldBackgroundColor: MyColors.black,
-        appBarTheme: const AppBarTheme(
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: MyColors.orange,
-            ),
-            elevation: 0,
-            backgroundColor: MyColors.black,
-            titleTextStyle: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.w700,
-              color: MyColors.orange,
-            )),
+      // SCAFFOLD AND APPBAR EDITING
+      scaffoldBackgroundColor: MyColors.black,
+      appBarTheme: AppBarTheme(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: MyColors.orange,
+          ),
+          elevation: 0,
+          backgroundColor: MyColors.black,
+          titleTextStyle: GoogleFonts.poppins(
+            fontSize: 24.0,
+            fontWeight: FontWeight.w700,
+            color: MyColors.orange,
+          )),
 
-        // TAB BAR EDITING
-        tabBarTheme: const TabBarTheme(
-          labelPadding: EdgeInsets.symmetric(
-            vertical: 10,
-          ),
-          indicator: BoxDecoration(
-            color: Colors.transparent,
-          ),
-          labelColor: MyColors.orange,
-          unselectedLabelColor: MyColors.grey,
-          unselectedLabelStyle: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
-          labelStyle: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-          ),
+      // TAB BAR EDITING
+      tabBarTheme: TabBarTheme(
+        labelPadding: const EdgeInsets.symmetric(
+          vertical: 10,
         ),
-
-        // TEXT EDITING
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(fontSize: 14.0),
+        indicator: const BoxDecoration(
+          color: Colors.transparent,
         ),
+        labelColor: MyColors.orange,
+        unselectedLabelColor: MyColors.grey,
+        unselectedLabelStyle: GoogleFonts.poppins(
+          fontSize: 18.0,
+          fontWeight: FontWeight.w500,
+        ),
+        labelStyle: GoogleFonts.poppins(
+          fontSize: 18.0,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
 
-        // SWITCH EDITING
-        switchTheme: SwitchThemeData(
-          trackColor: MaterialStateProperty.all(Colors.transparent),
-          thumbColor: MaterialStateProperty.all(Colors.grey),
-        ));
+      // TEXT EDITING
+      textTheme: TextTheme(
+          bodyText1: GoogleFonts.poppins(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w400,
+            color: MyColors.white,
+          ),
+          bodyText2: GoogleFonts.poppins(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
+            color: MyColors.orange,
+          ),
+          headline1: GoogleFonts.poppins(
+            fontSize: 24.0,
+            fontWeight: FontWeight.w700,
+            color: MyColors.white,
+          )),
+
+      // SWITCH EDITING
+      switchTheme: SwitchThemeData(
+        trackColor: MaterialStateProperty.all(Colors.transparent),
+        thumbColor: MaterialStateProperty.all(Colors.grey),
+      ),
+    );
   }
 }

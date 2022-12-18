@@ -1,58 +1,78 @@
-import 'package:api_consumption/data/model/catalog_model.dart';
-import 'package:api_consumption/data/repository/catalog_repository.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import '../config/colors.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({
     super.key,
-    this.onPressedArrow,
-    required this.movieId,
+    required this.bannerImg,
+    required this.description,
+    required this.title,
   });
 
-  final int movieId;
-  final VoidCallback? onPressedArrow;
+  final String bannerImg;
+  final String description;
+  final String title;
 
   @override
-  Widget build(BuildContext context)  {
-    final catalog = CatalogRepository();
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final heigth = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: FutureBuilder(
-        future:  catalog.getDetails(movieId),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Stack(
               children: [
-                const CircularProgressIndicator(),
-                ElevatedButton(
+                SizedBox(
+                  height: heigth * 0.5,
+                  width: width,
+                  child: Image.network(
+                    bannerImg,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('BACK'),
-                )
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: MyColors.orange,
+                    size: 30,
+                  ),
+                ),
               ],
-            ));
-          }
-          return Column(
-            children: snapshot.data!
-                .map<Widget>((movie) => Column(
-                      children: [
-                        Stack(children: [
-                          Image.network(movie.backdropImage),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.arrow_back_ios_new_outlined),
-                          ),
-                        ]),
-                      ],
-                    ))
-                .toList(),
-          );
-        },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 25.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.headline1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text(
+                      'Sinopse',
+                      style: theme.textTheme.bodyText2,
+                    ),
+                  ),
+                  Text(
+                    description,
+                    style: theme.textTheme.bodyText1,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

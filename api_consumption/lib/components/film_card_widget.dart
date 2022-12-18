@@ -23,20 +23,28 @@ class FilmCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              Container(
+                color: Colors.amber,
                 height: 138,
                 width: 101,
-                child: Image.network(filmImage, fit: BoxFit.fill),
+                child: Image.network(
+                  filmImage,
+                  fit: BoxFit.fill,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 8.0,
                 ),
                 child: SizedBox(
+                  height: 33.0,
                   width: 101.0,
-                  child: Text(
-                    filmName,
-                    style: theme.textTheme.bodyText1,
+                  child: Flexible(
+                    child: Text(
+                      filmName,
+                      style: theme.textTheme.bodyText1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               ),
