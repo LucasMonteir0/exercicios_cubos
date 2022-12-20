@@ -1,6 +1,5 @@
 import 'package:api_consumption/data/model/catalog_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../config/urls.dart';
 

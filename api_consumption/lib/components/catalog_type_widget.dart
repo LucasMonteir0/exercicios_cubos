@@ -24,7 +24,7 @@ class CatalogType extends StatelessWidget {
           }
           return GridView.count(
             padding: const EdgeInsets.all(16.0),
-            childAspectRatio: 0.63,
+            childAspectRatio: 0.57,
             crossAxisCount: 3,
             children: snapshot.data!
                 .map<Widget>((movies) => FilmCard(

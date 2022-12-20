@@ -23,8 +23,7 @@ class FilmCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                color: Colors.amber,
+              SizedBox(
                 height: 138,
                 width: 101,
                 child: Image.network(
@@ -37,14 +36,12 @@ class FilmCard extends StatelessWidget {
                   top: 8.0,
                 ),
                 child: SizedBox(
-                  height: 33.0,
                   width: 101.0,
-                  child: Flexible(
-                    child: Text(
-                      filmName,
-                      style: theme.textTheme.bodyText1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  child: Text(
+                    filmName,
+                    style: theme.textTheme.bodyText1,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),

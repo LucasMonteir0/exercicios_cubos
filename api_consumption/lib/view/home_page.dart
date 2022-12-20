@@ -1,7 +1,6 @@
 import 'package:api_consumption/data/repository/catalog_repository.dart';
 import 'package:api_consumption/components/catalog_type_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../config/colors.dart';
 
