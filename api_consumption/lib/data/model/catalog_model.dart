@@ -16,7 +16,7 @@ class CatalogModel {
 
   factory CatalogModel.fromMap(Map<String, dynamic> map) => CatalogModel(
         id: map['id'],
-        posterImage: "${Urls.baseImageUrl}${map['poster_path']}",
+        posterImage: "${Urls.baseImageUrl}${map['poster_path'] ?? ''}",
         backdropImage: "${Urls.baseImageUrl}${map['backdrop_path']}",
         description: map['overview'],
         title: map['title'],

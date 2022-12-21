@@ -35,9 +35,7 @@ class CatalogType extends StatelessWidget {
                           context,
                           MaterialPageRoute(builder: (context) {
                             return DetailsPage(
-                              bannerImg: movies.backdropImage,
-                              description: movies.description,
-                              title: movies.title,
+                              id: movies.id,
                             );
                           }),
                         );
