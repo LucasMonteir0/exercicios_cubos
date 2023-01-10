@@ -36,6 +36,7 @@ class CatalogRepository {
       final List<CatalogModel> catalogs = response.data['results']
           .map<CatalogModel>((map) => CatalogModel.fromMap(map))
           .toList();
+          
       return catalogs;
     } on DioError catch (e) {
       if (e.response!.statusCode == 401) {
