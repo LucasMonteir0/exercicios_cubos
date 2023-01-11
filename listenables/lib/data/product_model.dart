@@ -1,13 +1,14 @@
+
+
+
 class ProductModel {
-  final String name;
-  final String image;
-  final int price;
-  final bool onCart;
+  final String title;
+  final String urlImage;
+  final double price;
 
   ProductModel({
-    required this.name,
-    required this.image,
+    required this.title,
+    required this.urlImage,
     required this.price,
-    this.onCart = false,
   });
 }

@@ -1,16 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:listenables/data/product_repository.dart';
+import 'package:listenables/data/product_model.dart';
 
 class ProductsGridTile extends StatelessWidget {
-  const ProductsGridTile({super.key, required this.index});
+  const ProductsGridTile({
+    super.key,
+    required this.product,
+    required this.onAdd,
+  });
 
-  final int index;
+  final ProductModel product;
+  final VoidCallback onAdd;
 
   @override
   Widget build(BuildContext context) {
-    final productRepository = ProductRepository();
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: Column(
@@ -19,7 +23,7 @@ class ProductsGridTile extends StatelessWidget {
             height: 130.0,
             width: MediaQuery.of(context).size.width / 3,
             child: Image.network(
-              "https://picsum.photos/200/300?image=${Random().nextInt(85)}",
+              product.urlImage,
               fit: BoxFit.fill,
               scale: 1,
             ),
@@ -27,13 +31,13 @@ class ProductsGridTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Product ${index + 1} '),
+              Text(product.title),
               const SizedBox(width: 20),
-              Text('R\$ ${Random().nextInt(100).toStringAsFixed(2)}'),
+              Text('R\$ ${product.price.toStringAsFixed(2)}'),
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: onAdd,
             child: const Text('Add to Cart'),
           )
         ],

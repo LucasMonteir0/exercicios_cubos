@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:listenables/data/product_model.dart';
+import 'package:listenables/data/product_repository.dart';
 import 'package:listenables/view/cart_page.dart';
 import 'package:listenables/view/products_page.dart';
 
@@ -13,14 +15,22 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final PageController _pageController = PageController();
+  final ValueNotifier<List<ProductModel>> _valueNotifier = ValueNotifier([]);
 
   int _selectedIndex = 0;
+  late List<ProductModel> _products;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       _pageController.jumpToPage(index);
     });
+  }
+
+  @override
+  void initState() {
+    _products = BuildProducts.run(30);
+    super.initState();
   }
 
   @override
@@ -32,9 +42,18 @@ class _MyAppState extends State<MyApp> {
           onPageChanged: (page) {
             _selectedIndex = page;
           },
-          children: const [
-            ProductsPage(),
-            CartPage(),
+          children: [
+            ProductsPage(
+              valueNotifier: _valueNotifier,
+              products: _products,
+            ),
+            ValueListenableBuilder<List<ProductModel>>(
+                valueListenable: _valueNotifier,
+                builder: (context, value, _) {
+                  return CartPage(
+                    products: value,
+                  );
+                }),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
