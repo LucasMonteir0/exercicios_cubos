@@ -4,7 +4,10 @@ import 'package:api_consumption/ui/view/details_page.dart';
 import 'package:flutter/material.dart';
 
 class MoviesGridView extends StatelessWidget {
-  const MoviesGridView({Key? key, required this.data}) : super(key: key);
+  const MoviesGridView({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   final List<CatalogModel> data;
   @override
