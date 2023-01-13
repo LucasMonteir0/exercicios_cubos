@@ -2,7 +2,7 @@ import 'package:api_consumption/data/model/catalog_model.dart';
 import 'package:api_consumption/data/repository/catalog_repository.dart';
 import 'package:flutter/material.dart';
 
-import '../config/colors.dart';
+import '../../config/colors.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({

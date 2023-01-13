@@ -1,8 +1,8 @@
 import 'package:api_consumption/data/repository/catalog_repository.dart';
-import 'package:api_consumption/components/catalog_type_widget.dart';
+import 'package:api_consumption/ui/components/catalog_type_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../config/colors.dart';
+import '../../config/colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -10,8 +10,6 @@ class HomePage extends StatelessWidget {
     required this.onChangedSwitch,
     required this.switchValue,
   });
-
-  // final VoidCallback onFilmTap;
   final void Function(bool value) onChangedSwitch;
   final bool switchValue;
 
@@ -65,12 +63,11 @@ class HomePage extends StatelessWidget {
             ),
           ),
           body: TabBarView(children: [
-            CatalogType(
-              future: catalog.getPopular(),
-            ),
-            CatalogType(
-              future: catalog.getTopRated(),
-            ),
+            PopularMoviesPage(),
+            // CatalogType(
+            //   future: catalog.getTopRated(),
+            // ),
+            Container(),
           ])),
     );
   }

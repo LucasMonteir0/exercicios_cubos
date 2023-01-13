@@ -25,7 +25,7 @@ class CatalogRepository {
       throw e.error;
     } catch (e) {
       throw Exception();
-    }
+    } 
   }
 
   Future<List<CatalogModel>> getTopRated() async {

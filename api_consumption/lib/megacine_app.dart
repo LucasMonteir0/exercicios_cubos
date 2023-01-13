@@ -1,5 +1,5 @@
 import 'package:api_consumption/theme.dart';
-import 'package:api_consumption/view/home_page.dart';
+import 'package:api_consumption/ui/view/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MegaCineApp extends StatefulWidget {
